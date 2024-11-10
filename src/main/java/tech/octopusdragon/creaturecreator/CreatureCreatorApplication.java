@@ -19,6 +19,7 @@ public class CreatureCreatorApplication {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/creature-creator/api").allowedOrigins("http://localhost:5173");
+				registry.addMapping("/creature-creator/api").allowedOrigins("https://octopusdragon.tech");
 			}
 		};
 	}
