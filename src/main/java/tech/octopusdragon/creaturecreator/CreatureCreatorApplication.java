@@ -18,8 +18,7 @@ public class CreatureCreatorApplication {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/creature-creator/api").allowedOrigins("http://localhost:5173");
-				registry.addMapping("/creature-creator/api").allowedOrigins("https://octopusdragon.tech");
+				registry.addMapping("/creature-creator/api").allowedOrigins("http://localhost:5173", "https://octopusdragon.tech");
 			}
 		};
 	}
