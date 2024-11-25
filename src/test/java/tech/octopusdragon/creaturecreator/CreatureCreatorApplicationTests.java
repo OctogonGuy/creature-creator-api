@@ -12,7 +12,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.annotation.DirtiesContext;
-import tech.octopusdragon.creaturecreator.enums.Color;
 import tech.octopusdragon.creaturecreator.enums.Shape;
 import tech.octopusdragon.creaturecreator.model.Creature;
 
@@ -39,12 +38,12 @@ class CreatureCreatorApplicationTests {
 		assertThat(name).isEqualTo("John");
 		Shape bodyShape = Shape.valueOf(documentContext.read("$.bodyShape"));
 		assertThat(bodyShape).isEqualTo(Shape.SQUARE);
-		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
-		assertThat(bodyColor).isEqualTo(Color.BLUE);
+		String bodyColor = documentContext.read("$.bodyColor");
+		assertThat(bodyColor).isEqualToIgnoringCase("#0000FF");
 		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
 		assertThat(eyeShape).isEqualTo(Shape.CIRCLE);
-		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
-		assertThat(eyeColor).isEqualTo(Color.RED);
+		String eyeColor = documentContext.read("$.eyeColor");
+		assertThat(eyeColor).isEqualToIgnoringCase("#FF0000");
 		Boolean antenna = documentContext.read("$.antenna");
 		assertThat(antenna).isEqualTo(false);
 		Boolean horns = documentContext.read("$.horns");
@@ -74,11 +73,11 @@ class CreatureCreatorApplicationTests {
 		JSONArray bodyShapes = documentContext.read("$..bodyShape");
 		assertThat(bodyShapes).containsExactlyInAnyOrder("SQUARE", "CIRCLE", "PENTAGON");
 		JSONArray bodyColors = documentContext.read("$..bodyColor");
-		assertThat(bodyColors).containsExactlyInAnyOrder("BLUE", "RED", "YELLOW");
+		assertThat(bodyColors).containsExactlyInAnyOrder("#0000FF", "#FF0000", "#FFFF00");
 		JSONArray eyeShapes = documentContext.read("$..eyeShape");
 		assertThat(eyeShapes).containsExactlyInAnyOrder("CIRCLE", "CIRCLE", "HEART");
 		JSONArray eyeColors = documentContext.read("$..eyeColor");
-		assertThat(eyeColors).containsExactlyInAnyOrder("RED", "YELLOW", "RED");
+		assertThat(eyeColors).containsExactlyInAnyOrder("#FF0000", "#FFFF00", "#FF0000");
 		JSONArray antennas = documentContext.read("$..antenna");
 		assertThat(antennas).containsExactlyInAnyOrder(false, true, false);
 		JSONArray horns = documentContext.read("$..horns");
@@ -98,9 +97,9 @@ class CreatureCreatorApplicationTests {
 				null,
 				"Sarah",
 				Shape.SQUARE,
-				Color.GREEN,
+				"#00FF00",
 				Shape.STAR,
-				Color.PURPLE,
+				"#FF00FF",
 				true,
 				false,
 				false,
@@ -120,12 +119,12 @@ class CreatureCreatorApplicationTests {
 		assertThat(name).isEqualTo("Sarah");
 		Shape bodyShape = Shape.valueOf(documentContext.read("$.bodyShape"));
 		assertThat(bodyShape).isEqualTo(Shape.SQUARE);
-		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
-		assertThat(bodyColor).isEqualTo(Color.GREEN);
+		String bodyColor = documentContext.read("$.bodyColor");
+		assertThat(bodyColor).isEqualToIgnoringCase("#00FF00");
 		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
 		assertThat(eyeShape).isEqualTo(Shape.STAR);
-		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
-		assertThat(eyeColor).isEqualTo(Color.PURPLE);
+		String eyeColor = documentContext.read("$.eyeColor");
+		assertThat(eyeColor).isEqualToIgnoringCase("#FF00FF");
 		Boolean antenna = documentContext.read("$.antenna");
 		assertThat(antenna).isEqualTo(true);
 		Boolean horns = documentContext.read("$.horns");
@@ -145,9 +144,9 @@ class CreatureCreatorApplicationTests {
 				null,
 				"John",
 				Shape.CIRCLE,
-				Color.BLUE,
+				"#0000FF",
 				Shape.SQUARE,
-				Color.RED,
+				"#FF0000",
 				false,
 				true,
 				false,
@@ -166,12 +165,12 @@ class CreatureCreatorApplicationTests {
 		assertThat(name).isEqualTo("John");
 		Shape bodyShape = Shape.valueOf(documentContext.read("$.bodyShape"));
 		assertThat(bodyShape).isEqualTo(Shape.CIRCLE);
-		Color bodyColor = Color.valueOf(documentContext.read("$.bodyColor"));
-		assertThat(bodyColor).isEqualTo(Color.BLUE);
+		String bodyColor = documentContext.read("$.bodyColor");
+		assertThat(bodyColor).isEqualToIgnoringCase("#0000FF");
 		Shape eyeShape = Shape.valueOf(documentContext.read("$.eyeShape"));
 		assertThat(eyeShape).isEqualTo(Shape.SQUARE);
-		Color eyeColor = Color.valueOf(documentContext.read("$.eyeColor"));
-		assertThat(eyeColor).isEqualTo(Color.RED);
+		String eyeColor = documentContext.read("$.eyeColor");
+		assertThat(eyeColor).isEqualToIgnoringCase("#FF0000");
 		Boolean antenna = documentContext.read("$.antenna");
 		assertThat(antenna).isEqualTo(false);
 		Boolean horns = documentContext.read("$.horns");
